@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Testing_project" verbose="1" >
+    <test name="Testing_project" >
+        <classes>
+            <class name="WebRandomTests" />
+            <class name="HerokuAppTests" />
+        </classes>
+    </test>
+</suite>

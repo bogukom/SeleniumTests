@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -21,12 +22,12 @@ public class HerokuAppTests {
 
     }
 
-//    @AfterSuite
-//    public void afterSuite() {
-//        if(null != driver) {
-//            driver.close();
-//        }
-//    }
+    @AfterSuite
+    public void afterSuite() {
+        if(null != driver) {
+            driver.close();
+        }
+    }
 
     @Test
     public void clickRandomTimesAddElementAndVerifyIfNumberOfAddedButtonsIsProper() {
