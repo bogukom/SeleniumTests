@@ -10,10 +10,11 @@ public abstract class BaseDriverSettings {
 
     @BeforeClass
     public void doBeforeClass() {
-        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+        String operatingSystem = System.getProperty("os.name").toLowerCase();
+        if (operatingSystem.contains("win")) {
             System.setProperty("webdriver.chrome.driver", "C:\\Users\\Bogu\\Downloads\\chromedriver.exe");
         }
-        else if (System.getProperty("os.name").toLowerCase().contains("lin")) {
+        else if (operatingSystem.contains("lin") || operatingSystem.contains("nux")) {
             System.setProperty("webdriver.chrome.driver", "\\home\\pi\\Downloads\\chromedriver");
         }
 //        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Bogu\\Downloads\\chromedriver.exe");
