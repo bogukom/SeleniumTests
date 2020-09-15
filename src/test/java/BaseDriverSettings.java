@@ -10,9 +10,14 @@ public abstract class BaseDriverSettings {
 
     @BeforeClass
     public void doBeforeClass() {
-//        String chromedriverPath =
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Bogu\\Downloads\\chromedriver.exe");
-        System.out.println(System.getProperty("os.name"));
+        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+            System.setProperty("webdriver.chrome.driver", "C:\\Users\\Bogu\\Downloads\\chromedriver.exe");
+        }
+        else if (System.getProperty("os.name").toLowerCase().contains("lin")) {
+            System.setProperty("webdriver.chrome.driver", "\\home\\pi\\Downloads\\chromedriver");
+        }
+//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Bogu\\Downloads\\chromedriver.exe");
+//        System.out.println(System.getProperty("os.name"));
 //        if(System.getProperty("os.name").toLowerCase().contains("win"))
 //            chromedriverPath+=".exe";
 //        System.setProperty("webdriver.chrome.driver",chromedriverPath);
