@@ -1,37 +1,17 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class HerokuAppTests {
+public class HerokuAppTests extends BaseDriverSettings {
 
-    WebDriver driver;
     URL url;
     HerokuApp herokuApp;
     CommonPageMethods commonPageMethods;
 
-    @BeforeTest
-    public void doBeforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Bogu\\Downloads\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        options.addArguments("window-size=1200x600");
-        driver = new ChromeDriver();
-
-        url = new URL();
-        commonPageMethods = new CommonPageMethods(driver);
-        herokuApp = new HerokuApp(driver);
-
-    }
-
-    @AfterSuite
-    public void afterSuite() {
-        if(null != driver) {
-            driver.close();
-        }
+    @Override
+    public void initialize() {
+        this.url = new URL();
+        this.commonPageMethods = new CommonPageMethods(driver);
+        this.herokuApp = new HerokuApp(driver);
     }
 
     @Test
