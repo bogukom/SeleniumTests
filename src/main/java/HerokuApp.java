@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 
 public class HerokuApp {
@@ -10,8 +11,9 @@ public class HerokuApp {
     public static final String BROKEN_IMAGES_URL = "/broken_images";
     public static final String IMAGE_ELEMENT_IN_BROKEN_IMAGES_CSS = ".example img";
     public static final String CHECKBOXES_URL = "/checkboxes";
-    public static final String CHECKBOXES_1_CSS = "#checkboxes > input[type=checkbox]:nth-child(1)";
-    public static final String CHECKBOXES_2_CSS = "#checkboxes > input[type=checkbox]:nth-child(2)";
+    public static final String CONTEXT_MENU_URL = "/context_menu";
+    public static final String CONTEXT_BOX_ID = "hot-spot";
+//    public static final String CHECKBOXES_2_CSS = "#checkboxes > input[type=checkbox]:nth-child(2)";
 
     WebDriver driver;
     URL url;
@@ -85,5 +87,11 @@ public class HerokuApp {
             }
         }
         return verifyIfAllCheckboxesAreChecked();
+    }
+
+    public void rightClickOnContextBox() {
+        WebElement contextBox = driver.findElement(By.id(CONTEXT_BOX_ID));
+        Actions actions = new Actions(driver);
+        actions.contextClick(contextBox).perform();
     }
 }

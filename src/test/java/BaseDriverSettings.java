@@ -17,7 +17,7 @@ public abstract class BaseDriverSettings {
             System.setProperty("webdriver.chrome.driver", "C:\\Users\\Bogu\\Downloads\\chromedriver.exe");
 
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
+//            options.addArguments("--headless");
             options.addArguments("--window-size=1200x600");
             driver = new ChromeDriver(options);
         }
@@ -44,7 +44,7 @@ public abstract class BaseDriverSettings {
     @AfterClass
     public void afterClass() {
         if(null != driver) {
-            driver.close();
+            driver.quit();
         }
     }
 

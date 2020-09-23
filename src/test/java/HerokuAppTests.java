@@ -53,4 +53,31 @@ public class HerokuAppTests extends BaseDriverSettings {
 
         Assert.assertTrue(herokuApp.verifyIfAllCheckboxesAreChecked());
     }
+
+    @Test
+    public void verifyIsAlertVisible() {
+        herokuApp.getHerokuAppExampleUrl(HerokuApp.CONTEXT_MENU_URL);
+        herokuApp.rightClickOnContextBox();
+
+        Assert.assertTrue(commonPageMethods.verifyIsAlertVisible());
+    }
+
+    @Test
+    public void rightClickContextBoxAndVerifyAlertText() {
+        String alertText = "You selected a context menu";
+
+        herokuApp.getHerokuAppExampleUrl(HerokuApp.CONTEXT_MENU_URL);
+        herokuApp.rightClickOnContextBox();
+
+        Assert.assertEquals(commonPageMethods.alertGetText(), alertText);
+    }
+
+    @Test
+    public void acceptAlertAndVerifyIsNotVisible() {
+        herokuApp.getHerokuAppExampleUrl(HerokuApp.CONTEXT_MENU_URL);
+        herokuApp.rightClickOnContextBox();
+        commonPageMethods.acceptAlert();
+
+        Assert.assertFalse(commonPageMethods.verifyIsAlertVisible());
+    }
 }
