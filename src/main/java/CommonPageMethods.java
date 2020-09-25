@@ -19,9 +19,13 @@ public class CommonPageMethods {
         return randomGenerator.nextInt(max - min + 1) + min;
     }
 
-    public String alertGetText() {
+    public Alert waitUntilAlertIsPresented() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        return wait.until(ExpectedConditions.alertIsPresent());
+    }
+
+    public String alertGetText() {
+        Alert alert = waitUntilAlertIsPresented();
         return alert.getText();
     }
 
@@ -36,8 +40,7 @@ public class CommonPageMethods {
     }
 
     public void acceptAlert() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = waitUntilAlertIsPresented();
         alert.accept();
     }
 }

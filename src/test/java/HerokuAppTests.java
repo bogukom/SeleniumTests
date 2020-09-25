@@ -80,4 +80,13 @@ public class HerokuAppTests extends BaseDriverSettings {
 
         Assert.assertFalse(commonPageMethods.verifyIsAlertVisible());
     }
+
+    @Test
+    public void digestAuthenticationUserAndPass() {
+        String loginSuccessMessage = "Congratulations! You must have the proper credentials.";
+
+        herokuApp.enterUserNameAndPassword("admin", "admin");
+
+        Assert.assertEquals(herokuApp.getSuccessLoginText(), loginSuccessMessage);
+    }
 }

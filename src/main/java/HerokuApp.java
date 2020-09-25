@@ -13,23 +13,19 @@ public class HerokuApp {
     public static final String CHECKBOXES_URL = "/checkboxes";
     public static final String CONTEXT_MENU_URL = "/context_menu";
     public static final String CONTEXT_BOX_ID = "hot-spot";
-//    public static final String CHECKBOXES_2_CSS = "#checkboxes > input[type=checkbox]:nth-child(2)";
+    public static final String DIGEST_AUTH_URL = "/digest_auth";
+    public static final String AUTHENTICATION_SUCCESS_MESSAGE_CSS = "#content > div > p";
 
     WebDriver driver;
     URL url;
     CommonPageMethods commonPageMethods;
-//    HerokuApp herokuApp;
 
     public HerokuApp(WebDriver driver) {
         this.driver = driver;
         url = new URL();
         commonPageMethods = new CommonPageMethods(driver);
-//        this.herokuApp = new HerokuApp(driver);
     }
 
-    /**
-     * Add/Remove Elements
-     */
     public void getHerokuAppExampleUrl(String examplePartUrl) {
         String addOrRemoveElementUrl = url.HEROKUAPPTESTS_URL + examplePartUrl;
         driver.get(addOrRemoveElementUrl);
@@ -73,7 +69,7 @@ public class HerokuApp {
     }
 
     public void checkUncheckedCheckBoxes() {
-        for(WebElement checkbox : driver.findElements(By.cssSelector("form#checkboxes input"))) {
+        for (WebElement checkbox : driver.findElements(By.cssSelector("form#checkboxes input"))) {
             if (!checkbox.isSelected()) {
                 checkbox.click();
             }
@@ -81,7 +77,7 @@ public class HerokuApp {
     }
 
     public boolean verifyIfAllCheckboxesAreChecked() {
-        for(WebElement checkbox : driver.findElements(By.cssSelector("form#checkboxes input"))) {
+        for (WebElement checkbox : driver.findElements(By.cssSelector("form#checkboxes input"))) {
             if (checkbox.isSelected()) {
                 return true;
             }
@@ -93,5 +89,14 @@ public class HerokuApp {
         WebElement contextBox = driver.findElement(By.id(CONTEXT_BOX_ID));
         Actions actions = new Actions(driver);
         actions.contextClick(contextBox).perform();
+    }
+
+    public void enterUserNameAndPassword(String userName, String pass) {
+        String loginUrl = "https://" + userName + ":" + pass + "@" + url.HEROKUAPPTESTS_AUTH_URL + DIGEST_AUTH_URL;
+        driver.get(loginUrl);
+    }
+
+    public String getSuccessLoginText() {
+        return driver.findElement(By.cssSelector(AUTHENTICATION_SUCCESS_MESSAGE_CSS)).getText();
     }
 }
